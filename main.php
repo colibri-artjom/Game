@@ -1,7 +1,7 @@
 <?php
-
+session_start();
 require "vendor/autoload.php";
-
+$n = 9090
 $app = new \atk4\ui\App('pon4ik');
 $app->initLayout('Centered');
 
@@ -11,7 +11,6 @@ $app->initLayout('Centered');
  $col_3 = $columns->addColumn(3);
 
  $clicker = $col_2->add(["Button","1","green fluid big"]);
- $clicker->on('click', function($clicker) {
-   $clicker->set("Test");
-   $clicker->js()->reload();
- });
+ $label = $col_2->add(["Label",$_SESSION['user_id']]);
+
+$save = $col_2->add(["Button","Save","blue big"]);
