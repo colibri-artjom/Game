@@ -11,7 +11,7 @@ $app = new \atk4\ui\App('pon4ik');
 $app->initLayout('Centered');
 
 $form = $app->layout->add('Form');
-$form->setModel(new User($db));
+$form->setModel(new User($db),['nickname','name','surname','email','password']);
 $form->buttonSave->set("Создать аккаунт");
 $model = new User($db);
 
