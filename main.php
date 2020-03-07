@@ -1,9 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script>
+    window.onload = function() {
+      var click = document.getElementById("clicke")
+      var a = "<?=session_start() ?>"
+      var val = "<?= $_SESSION['cookie']; ?>";
+      click.value = val;
+    }
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
+
 <?php
-session_start();
 require "vendor/autoload.php";
-$n = 9090;
+require 'connection.php';
 $app = new \atk4\ui\App('pon4ik');
 $app->initLayout('Centered');
+$user = new User($db);
+$user->load($_SESSION['user_id']);
+$_SESSION['cookie'] = $user['clicker_count'];
+$user->unload();
+
 $m = 1;
 
  $columns = $app->add('Columns');
@@ -38,7 +60,7 @@ function Save() {
 //$clicker->js('click', new \atk4\ui\jsReload($val, ['val' => $val->jsInput()->val(new \atk4\ui\jsExpression('parseInt([])+1', [$val->jsInput()->val()]), $val->jsInput()->focus())]));
 // $label = $col_2->add(["Label",$_SESSION['user_id']]);
 
-$save = $col_2->add(["Button","Save","blue big"]);
+//$save = $col_2->add(["Button","Save","blue big"]);
 
 $exit = $app->add(['Button',"Ēxit","red"]);
 $exit->link(['exit']);
